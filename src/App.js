@@ -31,12 +31,18 @@ class App extends Component {
 
   loadPosts = async () => {
     const postResponse = fetch("https://jsonplaceholder.typicode.com/posts");
+    const photoResponse = fetch("https://jsonplaceholder.typicode.com/photos");
 
-    const [posts] = await Promise.all([postResponse]);
+    const [posts, photos] = await Promise.all([postResponse, photoResponse]);
 
     const postsJson = await posts.json();
+    const photosJson = await photos.json();
 
-    this.setState({ posts: postsJson });
+    const postsAndPhotos = postsJson.map((post, index) => {
+      return { ...post, cover: photosJson[index].url };
+    });
+
+    this.setState({ posts: postsAndPhotos });
   };
 
   // Termina o ciclo de vida dos componentes
@@ -62,10 +68,9 @@ class App extends Component {
           <h1> {counter} </h1>{" "}
           {posts.map((post) => (
             <div className="post">
-            
-            <div key={post.id} className="post-content">
-              <h1> {post.title} </h1> <p> {post.body}</p>
-            </div>
+              <div key={post.id} className="post-content">
+                <h1> {post.title} </h1> <p> {post.body}</p>
+              </div>
             </div>
           ))}{" "}
         </div>
