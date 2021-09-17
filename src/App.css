@@ -1,7 +1,7 @@
 /* Custom page */
 
 .container {
-  max-width: 1200px;
+  max-width: 1220px;
   margin: 0 auto;
   min-height: 100vh;
   background-color: #eee;
@@ -22,9 +22,13 @@
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  transition: transform 100ms ease-in-out;
+}
 
+.post:hover {
+  transform: scale(1.1);
 }
 
 .post-content {
-  padding: 30px;
+  padding: 20px;
 }

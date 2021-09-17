@@ -8,58 +8,36 @@ class App extends Component {
     posts: [],
   };
 
-  // Fazendo uma requisição de API externa 
-  
+  // Fazendo uma requisição de API externa
+
   componentDidMount() {
-
     this.loadPosts();
-    }
-
-  loadPosts = async () => {
-    const postsResponse = fetch("https://jsonplaceholder.typicode.com/posts");
-    
-    const [posts] = await Promise.all([postsResponse]);
-
-    const postsJson = await posts.json();
-
-    this.setState({ posts: postsJson });
-      
-
-    fetch("https://jsonplaceholder.typicode.com/albums")
-      .then((response) => response.json())
-      .then((posts) => this.setState({ posts }));
-
   }
 
   loadPosts = async () => {
     const postResponse = fetch("https://jsonplaceholder.typicode.com/posts");
     const photoResponse = fetch("https://jsonplaceholder.typicode.com/photos");
-
     const [posts, photos] = await Promise.all([postResponse, photoResponse]);
-
     const postsJson = await posts.json();
     const photosJson = await photos.json();
-
     const postsAndPhotos = postsJson.map((post, index) => {
       return { ...post, cover: photosJson[index].url };
     });
-
     this.setState({ posts: postsAndPhotos });
   };
 
   // Termina o ciclo de vida dos componentes///
 
-  handleTimeout = () => {
-    const { posts, counter } = this.state;
-    posts[0].title = "O titulo mudou";
-
-    this.timeoutUpdate = setTimeout(() => {
-      this.setState({
-        posts,
-        counter: counter + 1,
-      });
-    }, 1000);
-  };
+  //handleTimeout = () => {
+  //const { posts, counter } = this.state;
+  //posts[0].title = "O titulo mudou";
+  //this.timeoutUpdate = setTimeout(() => {
+  //  this.setState({
+  //    posts,
+  //    counter: counter + 1,
+  //  });
+  //}, 1000);
+  //};
 
   // Componente //
 
