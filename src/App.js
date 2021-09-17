@@ -8,14 +8,21 @@ class App extends Component {
     posts: []
   };
 
-  // Começando o ciclo de vida dos componentes
-
+  // Fazendo uma requisição de API externa 
+  
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/albums")
-      .then((response) => response.json())
-      .then((posts) => this.setState({ posts }));
+    this.loadPosts();
+    }
 
+  loadPosts = async () => {
+    const postsResponse = fetch("https://jsonplaceholder.typicode.com/posts");
     
+    const [posts] = await Promise.all([postsResponse]);
+
+    const postsJson = await posts.json();
+
+    this.setState({ posts: postsJson });
+      
   }
   
   // Termina o ciclo de vida dos componentes
