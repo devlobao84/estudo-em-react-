@@ -3,24 +3,8 @@ import { Component } from "react";
 
 class App extends Component {
   state = {
-    counter: 0,
-    posts: [
-      {
-        id: 1,
-        title: "O titulo 1",
-        body: "O corpo",
-      },
-      {
-        id: 2,
-        title: "O titulo 2",
-        body: "O corpo",
-      },
-      {
-        id: 3,
-        title: "O titulo 3",
-        body: "O corpo",
-      },
-    ],
+    
+    posts: [],
   };
 
   // Começando o ciclo de vida dos componentes
@@ -68,6 +52,7 @@ class App extends Component {
           <h1> {counter} </h1>{" "}
           {posts.map((post) => (
             <div className="post">
+              <img src={post.cover} alt={post.tile} />
               <div key={post.id} className="post-content">
                 <h1> {post.title} </h1> <p> {post.body}</p>
               </div>
