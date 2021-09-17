@@ -47,7 +47,7 @@ class App extends Component {
     this.setState({ posts: postsAndPhotos });
   };
 
-  // Termina o ciclo de vida dos componentes
+  // Termina o ciclo de vida dos componentes///
 
   handleTimeout = () => {
     const { posts, counter } = this.state;
