@@ -1,11 +1,11 @@
 import "./App.css";
 import { Component } from "react";
 
-// Class Components // 
+// Class Components //
 
 class App extends Component {
-  state = {    
-    posts: []
+  state = {
+    posts: [],
   };
 
   // Começando o ciclo de vida dos componentes
@@ -14,10 +14,24 @@ class App extends Component {
     fetch("https://jsonplaceholder.typicode.com/albums")
       .then((response) => response.json())
       .then((posts) => this.setState({ posts }));
-
-    
   }
-  
+
+  loadPosts = async () => {
+    const postResponse = fetch("https://jsonplaceholder.typicode.com/posts");
+    const photoResponse = fetch("https://jsonplaceholder.typicode.com/photos");
+
+    const [posts, photos] = await Promise.all([postResponse, photoResponse]);
+
+    const postsJson = await posts.json();
+    const photosJson = await photos.json();
+
+    const postsAndPhotos = postsJson.map((post, index) => {
+      return { ...post, cover: photosJson[index].url };
+    });
+
+    this.setState({ posts: postsAndPhotos });
+  };
+
   // Termina o ciclo de vida dos componentes
 
   handleTimeout = () => {
@@ -38,15 +52,21 @@ class App extends Component {
     const { posts, counter } = this.state;
 
     return (
-      <div className="App">
-        <h1> {counter} </h1>{" "}
-        {posts.map((post) => (
-          <div key={post.id}>
-            <h1> {post.title} </h1> <p> {post.body}</p>
-          </div>  
-        ))}{" "}
-      </div>
+      <section className="container">
+        <div className="posts">
+          <h1> {counter} </h1>{" "}
+          {posts.map((post) => (
+            <div className="post">
+              <img src={post.cover} alt={post.tile} />
+              <div key={post.id} className="post-content">
+                <h1> {post.title} </h1> <p> {post.body}</p>
+              </div>
+            </div>
+          ))}{" "}
+        </div>
+      </section>
     );
   }
 }
+
 export default App;
