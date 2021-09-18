@@ -6,14 +6,14 @@ import { Component } from "react";
 class App extends Component {
   state = {
     posts: [],
-  };
-
-  // Fazendo uma requisição de API externa
+  }; 
 
   componentDidMount() {
     this.loadPosts();
   }
 
+  // Fazendo uma requisição de API externa
+  
   loadPosts = async () => {
     const postResponse = fetch("https://jsonplaceholder.typicode.com/posts");
     const photoResponse = fetch("https://jsonplaceholder.typicode.com/photos");
