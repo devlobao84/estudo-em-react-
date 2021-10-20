@@ -2,7 +2,6 @@ import "./App.css";
 import { Component } from "react";
 import { PostCard } from "./components/PostCard";
 
-
 // Class Components //
 
 class App extends Component {
@@ -10,12 +9,11 @@ class App extends Component {
     posts: [],
   };
 
-  // Fazendo uma requisição de API externa 
-  
-  componentDidMount() {
+  // Fazendo uma requisição de API externa
 
+  componentDidMount() {
     this.loadPosts();
-    }
+  }
 
   loadPosts = async () => {
     const postResponse = fetch("https://jsonplaceholder.typicode.com/posts");
@@ -33,7 +31,7 @@ class App extends Component {
     this.setState({ posts: postsAndPhotos });
   };
 
-  // Termina o ciclo de vida dos componentes
+  // Termina aqui o ciclo de vida dos componentes
 
   handleTimeout = () => {
     const { posts, counter } = this.state;
@@ -45,9 +43,9 @@ class App extends Component {
         counter: counter + 1,
       });
     }, 1000);
-  }; 
+  };
 
-  // Componente //
+  // Componente refatorado //
 
   render() {
     const { posts } = this.state;
@@ -57,13 +55,13 @@ class App extends Component {
         <div className="posts">
           {/*<h1> {counter} </h1>{" "}*/}
           {posts.map((post) => (
-            <PostCard 
-            key={post.id}
-            title={post.title}
-            body={post.body}
-            id={post.id}
-            cover={post.cover}
-             />
+            <PostCard
+              key={post.id}
+              title={post.title}
+              body={post.body}
+              id={post.id}
+              cover={post.cover}
+            />
           ))}{" "}
         </div>
       </section>
@@ -72,8 +70,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-

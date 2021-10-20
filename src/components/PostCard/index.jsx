@@ -1,11 +1,10 @@
-export const PostCard = ({ title, cover, body, id }) => (  
-    <div className="post">
-      <img src={cover} alt={title} />
-      <div className="post-content">
-        <h1> {title} </h1> <h1>{body}</h1>
-      </div>
+// Componente refatorado //
+
+export const PostCard = ({ title, cover, body, id }) => (
+  <div className="post">
+    <img src={cover} alt={title} />
+    <div className="post-content">
+      <h1> {title} </h1> <h1>{body}</h1>
     </div>
-  
+  </div>
 );
-
-
