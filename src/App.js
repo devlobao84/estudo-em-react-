@@ -1,5 +1,7 @@
 import "./App.css";
 import { Component } from "react";
+import { PostCard } from "./components/PostCard";
+
 
 // Class Components //
 
@@ -43,7 +45,7 @@ class App extends Component {
         counter: counter + 1,
       });
     }, 1000);
-  };
+  }; 
 
   // Componente //
 
@@ -53,14 +55,15 @@ class App extends Component {
     return (
       <section className="container">
         <div className="posts">
-          <h1> {counter} </h1>{" "}
+          {/*<h1> {counter} </h1>{" "}*/}
           {posts.map((post) => (
-            <div className="post">
-              <img src={post.cover} alt={post.tile} />
-              <div key={post.id} className="post-content">
-                <h1> {post.title} </h1> <p> {post.body}</p>
-              </div>
-            </div>
+            <PostCard
+              key={post.id}
+              title={post.title}
+              body={post.body}
+              id={post.id}
+              cover={post.cover}
+            />
           ))}{" "}
         </div>
       </section>
@@ -69,4 +72,8 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
 
