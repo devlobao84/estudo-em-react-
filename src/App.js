@@ -50,20 +50,20 @@ class App extends Component {
   // Componente //
 
   render() {
-    const { posts, counter } = this.state;
+    const { posts } = this.state;
 
     return (
       <section className="container">
         <div className="posts">
           {/*<h1> {counter} </h1>{" "}*/}
           {posts.map((post) => (
-            <PostCard
-              key={post.id}
-              title={post.title}
-              body={post.body}
-              id={post.id}
-              cover={post.cover}
-            />
+            <PostCard 
+            key={post.id}
+            title={post.title}
+            body={post.body}
+            id={post.id}
+            cover={post.cover}
+             />
           ))}{" "}
         </div>
       </section>
