@@ -16,22 +16,6 @@ class App extends Component {
     }
 
   loadPosts = async () => {
-    const postsResponse = fetch("https://jsonplaceholder.typicode.com/posts");
-    
-    const [posts] = await Promise.all([postsResponse]);
-
-    const postsJson = await posts.json();
-
-    this.setState({ posts: postsJson });
-      
-
-    fetch("https://jsonplaceholder.typicode.com/albums")
-      .then((response) => response.json())
-      .then((posts) => this.setState({ posts }));
-
-  }
-
-  loadPosts = async () => {
     const postResponse = fetch("https://jsonplaceholder.typicode.com/posts");
     const photoResponse = fetch("https://jsonplaceholder.typicode.com/photos");
 
@@ -85,3 +69,4 @@ class App extends Component {
 }
 
 export default App;
+
