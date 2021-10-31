@@ -12,7 +12,7 @@ export class Home extends Component {
     posts: [],
     allPosts: [],
     page: 0,
-    postsPerPage: 2
+    postsPerPage: 3
   };
 
   // Fazendo uma requisição de API externa
@@ -46,15 +46,20 @@ export class Home extends Component {
   }
 
   render() {
-    const { posts } = this.state;
+    const { posts, page, postsPerPage, allPosts } = this.state;
+    const noMorePost = page + postsPerPage >= allPosts.length; 
 
     return (
       <section className="container">
         <Posts posts={posts} />
-        <Button
-         text="Algo a mais"
-         onClick={this.loadMorePosts}
-          />       
+
+        <div className="button-container">
+          <Button
+            text="Algo a mais"
+            onClick={this.loadMorePosts}
+            disabled={noMorePost}
+          />
+        </div>
       </section>
     );
   }
