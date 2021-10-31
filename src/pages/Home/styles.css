@@ -4,7 +4,7 @@
   max-width: 1220px;
   margin: 0 auto;
   min-height: 100vh;
-  background-color: #eee;
+  background-color: rgb(230, 230, 230);
   padding: 30px;
 }
 
@@ -32,5 +32,13 @@
 .post-content {
   padding: 20px;
 }
+
+.viewplus {
+  width: 20%;
+  height: 25%;
+  font: 1.5em;
+}
+
+
 
 
