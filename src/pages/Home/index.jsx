@@ -47,8 +47,9 @@ export class Home extends Component {
 
   render() {
     const { posts, page, postsPerPage, allPosts } = this.state;
-    const noMorePost = page + postsPerPage >= allPosts.length; 
+    const noMorePost = page + postsPerPage >= allPosts.length;
 
+    // agora quero testar 
     return (
       <section className="container">
         <Posts posts={posts} />
