@@ -3,7 +3,7 @@ export const PostCard = (props) => {
     return (
         <h1>Salve seu Zé</h1>
 
-        
+         
         //<div className="post">
         //      <img src={post.cover} alt={post.tile} />
         //      <div key={post.id} className="post-content">
