@@ -12,7 +12,8 @@ export class Home extends Component {
     posts: [],
     allPosts: [],
     page: 0,
-    postsPerPage: 3
+    postsPerPage: 3,
+    searchValue: ''
   };
 
   // Fazendo uma requisição de API externa
@@ -41,25 +42,41 @@ export class Home extends Component {
 
     posts.push(...nextPosts);
 
-    this.setState({ posts, page:nextPage})
-   ;
+    this.setState({ posts, page:nextPage});
+  }
+
+  handleChange = (e) => {
+    const { value } = e.target
+    this.setState ({ searchValue: value })
   }
 
   render() {
-    const { posts, page, postsPerPage, allPosts } = this.state;
+    const { posts, page, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePost = page + postsPerPage >= allPosts.length;
 
     // agora quero testar 
     return (
       <section className="container">
+        {!!searchValue && (
+          <> 
+          <h1 className="titleCard">Busque seu card!{searchValue}</h1>
+          </>
+        )}
+        <input
+        onChange={this.handleChange}
+        value={searchValue}
+        type="search" /> <br /><br /><br />
         <Posts posts={posts} />
 
         <div className="button-container">
-          <Button
+          {!searchValue && (
+            <Button
             text="Algo a mais"
             onClick={this.loadMorePosts}
             disabled={noMorePost}
           />
+          )}
+          
         </div>
       </section>
     );
