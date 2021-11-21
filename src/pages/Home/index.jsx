@@ -2,8 +2,8 @@ import { Component } from "react";
 
 import "./styles.css";
 
-import { Posts } from '../../components/Posts';
-import { loadPosts } from '../../utils/load-posts';
+import { Posts } from "../../components/Posts";
+import { loadPosts } from "../../utils/load-posts";
 import { Button } from "../../components/Button";
 
 // Class Components //
@@ -12,7 +12,8 @@ export class Home extends Component {
     posts: [],
     allPosts: [],
     page: 0,
-    postsPerPage: 3
+    postsPerPage: 3,
+    searchValue: ''
   };
 
   // Fazendo uma requisição de API externa
@@ -21,7 +22,7 @@ export class Home extends Component {
   }
 
   loadPosts = async () => {
-    const { page, postsPerPage} = this.state
+    const { page, postsPerPage } = this.state;
     const postsAndPhotos = await loadPosts();
     this.setState({
       posts: postsAndPhotos.slice(page, postsPerPage),
@@ -30,28 +31,36 @@ export class Home extends Component {
   };
 
   loadMorePosts = () => {
-    const {
-      page,
-      postsPerPage,
-      allPosts,
-      posts
-    } = this.state;
+    const { page, postsPerPage, allPosts, posts } = this.state;
     const nextPage = page + postsPerPage;
     const nextPosts = allPosts.slice(nextPage, nextPage + postsPerPage);
 
     posts.push(...nextPosts);
 
-    this.setState({ posts, page:nextPage})
-   ;
-  }
+    this.setState({ posts, page: nextPage });
+  };
+
+   handlerChange = (e) => {
+     const { value } = e.target;
+     this.setState({ searchValue: value });
+   }
+
 
   render() {
-    const { posts, page, postsPerPage, allPosts } = this.state;
+    const { posts, page, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePost = page + postsPerPage >= allPosts.length;
 
-    // agora quero testar 
+    // agora quero testar
     return (
       <section className="container">
+        <input
+        onChange={this.handlerChange}
+        value={searchValue}
+         type="search" />
+        
+        <br />
+        <br />
+        <br />
         <Posts posts={posts} />
 
         <div className="button-container">
@@ -65,5 +74,3 @@ export class Home extends Component {
     );
   }
 }
-
-
