@@ -13,7 +13,7 @@ export class Home extends Component {
     allPosts: [],
     page: 0,
     postsPerPage: 3,
-    searchValue: ''
+    searchValue: "",
   };
 
   // Fazendo uma requisição de API externa
@@ -40,35 +40,47 @@ export class Home extends Component {
     this.setState({ posts, page: nextPage });
   };
 
-   handlerChange = (e) => {
-     const { value } = e.target;
-     this.setState({ searchValue: value });
-   }
-
+  handleChange = (e) => {
+    const { value } = e.target;
+    this.setState({ searchValue: value });
+  };
 
   render() {
     const { posts, page, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePost = page + postsPerPage >= allPosts.length;
 
+    const filteredPosts = !!searchValue
+      ? allPosts.filter((post) => {
+          return post.title
+            .toLowerCase()
+            .includes(searchValue.toLocaleLowerCase());
+        })
+      : posts;
+
     // agora quero testar
     return (
       <section className="container">
-        <input
-        onChange={this.handlerChange}
-        value={searchValue}
-         type="search" />
-        
+        {!!searchValue && (
+          <>
+            <h1 className="titleCard">Busque seu card!{searchValue}</h1>
+          </>
+        )}
+        <input onChange={this.handleChange} value={searchValue} type="search" />{" "}
         <br />
         <br />
         <br />
-        <Posts posts={posts} />
+
+        {filteredPosts.length > 0 && <Posts posts={filteredPosts} />}
+        {filteredPosts.length === 0 && <h3 className="notpost"> Não existem posts aqui!</h3>}
 
         <div className="button-container">
-          <Button
-            text="Algo a mais"
-            onClick={this.loadMorePosts}
-            disabled={noMorePost}
-          />
+          {!searchValue && (
+            <Button
+              text="Algo a mais"
+              onClick={this.loadMorePosts}
+              disabled={noMorePost}
+            />
+          )}
         </div>
       </section>
     );
