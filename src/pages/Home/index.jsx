@@ -5,6 +5,7 @@ import "./styles.css";
 import { Posts } from "../../components/Posts";
 import { loadPosts } from "../../utils/load-posts";
 import { Button } from "../../components/Button";
+import { TextInput } from "../../components/TextInput";
 
 // Class Components //
 export class Home extends Component {
@@ -60,19 +61,20 @@ export class Home extends Component {
     // agora quero testar
     return (
       <section className="container">
-        {!!searchValue && (
+        <h1 className="titleCard">Busque seu card!</h1>
+        {/*{!!searchValue && (
           <>
-            <h1 className="titleCard">Busque seu card!{searchValue}</h1>
+            <h1 className="titleCard">Busque seu card!</h1>
           </>
-        )}
-        <input onChange={this.handleChange} value={searchValue} type="search" />{" "}
+        )} */}
+        <TextInput searchValue={searchValue} handleChange={this.handleChange} />{" "}
         <br />
         <br />
         <br />
-
         {filteredPosts.length > 0 && <Posts posts={filteredPosts} />}
-        {filteredPosts.length === 0 && <h3 className="notpost"> Não existem posts aqui!</h3>}
-
+        {filteredPosts.length === 0 && (
+          <h3 className="notpost"> Não existem posts aqui!:(</h3>
+        )}
         <div className="button-container">
           {!searchValue && (
             <Button
