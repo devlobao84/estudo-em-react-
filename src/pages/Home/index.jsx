@@ -13,7 +13,7 @@ export class Home extends Component {
     allPosts: [],
     page: 0,
     postsPerPage: 3,
-    searchValue: 'teste'sssssssssssssssssssss
+    searchValue: ''
   };
 
   // Fazendo uma requisição de API externa
