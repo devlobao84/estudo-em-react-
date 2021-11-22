@@ -61,7 +61,7 @@ export class Home extends Component {
     // agora quero testar
     return (
       <section className="container">
-        <h1 className="titleCard">Busque seu card!</h1>
+        <h1 className="titleCard">Busque seu card agora!</h1>
         {/*{!!searchValue && (
           <>
             <h1 className="titleCard">Busque seu card!</h1>
