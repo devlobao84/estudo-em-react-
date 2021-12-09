@@ -8,6 +8,8 @@ import { Button } from "../../components/Button";
 import { TextInput } from "../../components/TextInput";
 
 // Class Components //
+
+
 export class Home extends Component {
   state = {
     posts: [],
