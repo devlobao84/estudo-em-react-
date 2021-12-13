@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useState } from "react";
 
 import "./styles.css";
 
@@ -9,8 +9,54 @@ import { TextInput } from "../../components/TextInput";
 
 // Class Components //
 
+export const Home = () => {
+   const [posts, setPosts] = useState([]); 
+   const [allPosts, setAllPosts] = useState([]); 
+   const [page, setPages] = useState(0); 
+   const [perPage, setPerPage] = useState(10); 
+   const [searchValue, setSearchValue] = useState([]); 
+   
+   const noMorePost = page + postsPerPage >= allPosts.length;
 
-export class Home extends Component {
+   const filteredPosts = !!searchValue
+      ? allPosts.filter((post) => {
+          return post.title
+            .toLowerCase()
+            .includes(searchValue.toLocaleLowerCase());
+        })
+      : posts;
+
+  return (
+    <section className="container">
+      <h1 className="titleCard">Busque seu card agora!</h1>
+      {/*{!!searchValue && (
+        <>
+          <h1 className="titleCard">Busque seu card!</h1>
+        </>
+      )} */}
+      <TextInput searchValue={searchValue} handleChange={this.handleChange} />{" "}
+      <br />
+      <br />
+      <br />
+      {filteredPosts.length > 0 && <Posts posts={filteredPosts} />}
+      {filteredPosts.length === 0 && (
+        <h3 className="notpost"> Não existem posts aqui!:(</h3>
+      )}
+      <div className="button-container">
+        {!searchValue && (
+          <Button
+            text="Algo a mais"
+            onClick={this.loadMorePosts}
+            disabled={noMorePost}
+          />
+        )}
+      </div>
+    </section>
+  );
+}
+
+
+export class Home2 extends Component {
   state = {
     posts: [],
     allPosts: [],
