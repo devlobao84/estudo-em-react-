@@ -1,7 +1,7 @@
-import './styles.css'
 import { PostCard } from "../PostCard"
+import './styles.css'
 
-export const Posts = ({ posts }) => { 
+export const Posts = ({ posts = [] }) => { 
     return (
       <div className="posts">
         {/*<h1> {counter} </h1>{" "}*/}
