@@ -1,11 +1,11 @@
 import "./styles.css"
 
 
-export const Button = ({ text, onClick, disabLed }) => (
+export const Button = ({ text, onClick, disabled }) => (
   <button
   className='button'
   onClick={onClick}
-  disabLed={disabLed}
+  disabLed={disabled}
   >
     {text}
   </button>

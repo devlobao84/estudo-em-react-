@@ -8,7 +8,7 @@ export const PostCard = ({ title, cover, body, id }) => (
         {" "}
         {title} {id}
       </h1>
-      <p> {body}</p>
+      <p> {body}</p>      
     </div>
   </div>
 );
