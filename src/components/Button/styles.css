@@ -1,0 +1,27 @@
+.buttonOnClick {
+    width: 50%;
+    background: rgb(30, 79, 238);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.buttonOnClick:hover {
+    width: 50%;
+    background: rgb(233, 212, 26);
+    color: black;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.buttonOnClick:disabled {
+    background: rgb(83, 83, 83);   
+    cursor: not-allowed;
+}
+
