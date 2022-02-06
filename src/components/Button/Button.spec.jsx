@@ -1,6 +1,3 @@
-<<<<<<< HEAD
- 
-=======
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Button } from ".";
@@ -41,5 +38,3 @@ describe("<button />", () => {
   });
 
 });
-
->>>>>>> 690d07f0ecaacf31bd3425b6caf92e5410511ec2
