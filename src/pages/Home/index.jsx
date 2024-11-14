@@ -53,7 +53,7 @@ export const Home = () => {
 
   return (
     <section className="container">
-      <h1 className="titleCard">Busque seu card agora!</h1>
+      <h1 className="titleCard">Busque seu card neste momento!</h1>
       <TextInput searchValue={searchValue} handleChange={handleChange} /> <br />
       <br />
       <br />
